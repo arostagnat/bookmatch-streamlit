@@ -42,7 +42,7 @@ with st.form(key='params_for_api'):
         movie_ids = [metadata_movies[metadata_movies.title == title].item_id.values[0] for title in movie_titles]
 
         # Add API url below
-        bookmatch_url = 'http://localhost:8000/predict'
+        bookmatch_url = 'https://bookmatchv1-pltokkdmva-ew.a.run.app/predict'
         response = requests.get(bookmatch_url, params={"movie_list":movie_ids})
         prediction = response.json()
 
