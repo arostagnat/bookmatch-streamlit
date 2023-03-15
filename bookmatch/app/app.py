@@ -59,10 +59,10 @@ with st.form(key='params_for_api'):
                 for book in prediction["book_list"]:
                     st.markdown(f'#### {book}')
 
-        if st.form_submit_button('Why ?'):
+        if st.button('Why ?'):
 
             with st.spinner("**:red[Chat GPT]** is generating an explanation..."):
-                time.sleep(2)
+                time.sleep(1)
 
                 ### Chat GPT comment
                 chat_input = f"""Someone enjoyed watching the movies {movie_titles}, write a 3-sentence paragraph explaining why this person might
