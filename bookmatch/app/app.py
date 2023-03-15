@@ -59,20 +59,22 @@ with st.form(key='params_for_api'):
                 for book in prediction["book_list"]:
                     st.markdown(f'#### {book}')
 
-        with st.spinner("**:red[Chat GPT]** is generating an explanation..."):
+        if st.form_submit_button('Explain your recommendations'):
 
-            ### Chat GPT comment
-            chat_input = f"""Someone enjoyed watching the movies {movie_titles}, write a 3-sentence paragraph explaining why this person might
-            enjoy reading {prediction["book_list"]}"""
+            with st.spinner("**:red[Chat GPT]** is generating an explanation..."):
 
-            completion = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "user", "content": chat_input}])
+                ### Chat GPT comment
+                chat_input = f"""Someone enjoyed watching the movies {movie_titles}, write a 3-sentence paragraph explaining why this person might
+                enjoy reading {prediction["book_list"]}"""
 
-            st.write(completion.choices[0].message["content"])
+                completion = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "user", "content": chat_input}])
 
-            st.write("""
-         <p> <a href="https://youtu.be/ws3WGmINlIg?t=14">🍔</a>
-         </p>
-        """,unsafe_allow_html = True)
+                st.write(completion.choices[0].message["content"])
+
+                st.write("""
+            <p> <a href="https://youtu.be/ws3WGmINlIg?t=14">🍔</a>
+            </p>
+            """,unsafe_allow_html = True)
