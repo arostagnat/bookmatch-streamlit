@@ -37,6 +37,8 @@ with st.form(key='params_for_api'):
     movie_titles = st.multiselect("What are some of your favorite movies?",
                                  movie_title_selection,max_selections=10) ### TODO remove 10 max selections and make the choice less laggy
 
+    prediction = None
+
     if st.form_submit_button('Get my books'):
 
         with st.spinner('Searching for recommendations...'):
