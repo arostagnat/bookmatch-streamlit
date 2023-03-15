@@ -41,9 +41,14 @@ with st.form(key='params_for_api'):
 
         movie_ids = [metadata_movies[metadata_movies.title == title].item_id.values[0] for title in movie_titles]
 
+        for i, e in enumerate(movie_ids):
+            movie_ids[i] = str(e)
+
+        movie_ids_list = '$$$$$'.join(movie_ids)
+
         # Add API url below
         bookmatch_url = 'https://bookmatchv1-pltokkdmva-ew.a.run.app/predict'
-        response = requests.get(bookmatch_url, params={"movie_list":movie_ids})
+        response = requests.get(bookmatch_url, params={"movie_list":movie_ids_list})
         prediction = response.json()
 
         with st.spinner('Searching for your recommendations...'):
