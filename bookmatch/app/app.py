@@ -59,22 +59,23 @@ with st.form(key='params_for_api'):
                 for book in prediction["book_list"]:
                     st.markdown(f'#### {book}')
 
-    if st.form_submit_button('Why ?'):
+        if st.form_submit_button('Why ?'):
 
-        with st.spinner("**:red[Chat GPT]** is generating an explanation..."):
+            with st.spinner("**:red[Chat GPT]** is generating an explanation..."):
+                time.sleep(2)
 
-            ### Chat GPT comment
-            chat_input = f"""Someone enjoyed watching the movies {movie_titles}, write a 3-sentence paragraph explaining why this person might
-            enjoy reading {prediction["book_list"]}"""
+                ### Chat GPT comment
+                chat_input = f"""Someone enjoyed watching the movies {movie_titles}, write a 3-sentence paragraph explaining why this person might
+                enjoy reading {prediction["book_list"]}"""
 
-            completion = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "user", "content": chat_input}])
+                completion = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "user", "content": chat_input}])
 
-            st.write(completion.choices[0].message["content"])
+                st.write(completion.choices[0].message["content"])
 
-            st.write("""
-        <p> <a href="https://youtu.be/ws3WGmINlIg?t=14">🍔</a>
-        </p>
-        """,unsafe_allow_html = True)
+                st.write("""
+            <p> <a href="https://youtu.be/ws3WGmINlIg?t=14">🍔</a>
+            </p>
+            """,unsafe_allow_html = True)
