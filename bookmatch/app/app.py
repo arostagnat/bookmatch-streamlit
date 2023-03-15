@@ -47,10 +47,9 @@ with st.form(key='params_for_api'):
         movie_ids_list = '$$$$$'.join(movie_ids)
 
         # Add API url below
-        bookmatch_url = 'https://bookmatchv1-pltokkdmva-od.a.run.app/'
+        bookmatch_url = 'https://bookmatchv1-pltokkdmva-od.a.run.app/predict'
         response = requests.get(bookmatch_url, params={"movie_list":movie_ids_list})
         prediction = response.json()
-        st.write(prediction)
 
         with st.spinner('Searching for your recommendations...'):
             time.sleep(4)
