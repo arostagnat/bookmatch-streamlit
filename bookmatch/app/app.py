@@ -54,6 +54,8 @@ with st.form(key='params_for_api'):
             response = requests.get(bookmatch_url, params={"movie_list":movie_ids_list})
             prediction = response.json()
 
+st.write(prediction)
+
 if prediction.get("book_list"):
     st.markdown(f"#### Your :blue[book] recommendations are:")
     for book in prediction["book_list"]:
