@@ -47,8 +47,7 @@ with st.form(key='params_for_api'):
         movie_ids_list = '$$$$$'.join(movie_ids)
 
         # Add API url below
-        #bookmatch_url = 'https://bookmatchv1-pltokkdmva-ew.a.run.app/predict'
-        bookmatch_url = 'http://localhost:8000/predict'
+        bookmatch_url = 'https://bookmatchv1-pltokkdmva-ew.a.run.app/predict'
         response = requests.get(bookmatch_url, params={"movie_list":movie_ids_list})
         prediction = response.json()
 
