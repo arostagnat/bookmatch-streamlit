@@ -50,6 +50,7 @@ with st.form(key='params_for_api'):
         bookmatch_url = 'https://bookmatchv1-pltokkdmva-od.a.run.app/'
         response = requests.get(bookmatch_url, params={"movie_list":movie_ids_list})
         prediction = response.json()
+        st.write(prediction)
 
         with st.spinner('Searching for your recommendations...'):
             time.sleep(4)
