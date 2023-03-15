@@ -57,7 +57,7 @@ with st.form(key='params_for_api'):
             if prediction.get("book_list"):
                 st.markdown(f"### Your :blue[book] recommendations are:")
                 for book in prediction["book_list"]:
-                    st.markdown(f'#### -{book}')
+                    st.markdown(f'#### {book}')
 
         with st.spinner("**:red[Chat GPT]** is generating an explanation..."):
 
