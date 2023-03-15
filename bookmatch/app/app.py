@@ -39,43 +39,45 @@ with st.form(key='params_for_api'):
 
     if st.form_submit_button('Get my books'):
 
-        movie_ids = [metadata_movies[metadata_movies.title == title].item_id.values[0] for title in movie_titles]
-
-        for i, e in enumerate(movie_ids):
-            movie_ids[i] = str(e)
-
-        movie_ids_list = '$$$$$'.join(movie_ids)
-
-        # Add API url below
-        bookmatch_url = 'https://bookmatchv1-pltokkdmva-od.a.run.app/predict'
-        response = requests.get(bookmatch_url, params={"movie_list":movie_ids_list})
-        prediction = response.json()
-
         with st.spinner('Searching for recommendations...'):
             time.sleep(4)
 
-            if prediction.get("book_list"):
-                st.markdown(f"### Your :blue[book] recommendations are:")
-                for book in prediction["book_list"]:
-                    st.markdown(f'#### {book}')
+            movie_ids = [metadata_movies[metadata_movies.title == title].item_id.values[0] for title in movie_titles]
 
-        if st.button('Why ?'):
+            for i, e in enumerate(movie_ids):
+                movie_ids[i] = str(e)
 
-            with st.spinner("**:red[Chat GPT]** is generating an explanation..."):
-                time.sleep(1)
+            movie_ids_list = '$$$$$'.join(movie_ids)
 
-                ### Chat GPT comment
-                chat_input = f"""Someone enjoyed watching the movies {movie_titles}, write a 3-sentence paragraph explaining why this person might
-                enjoy reading {prediction["book_list"]}"""
+            # Add API url below
+            bookmatch_url = 'https://bookmatchv1-pltokkdmva-od.a.run.app/predict'
+            response = requests.get(bookmatch_url, params={"movie_list":movie_ids_list})
+            prediction = response.json()
 
-                completion = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "user", "content": chat_input}])
 
-                st.write(completion.choices[0].message["content"])
 
-                st.write("""
-            <p> <a href="https://youtu.be/ws3WGmINlIg?t=14">🍔</a>
-            </p>
-            """,unsafe_allow_html = True)
+if prediction.get("book_list"):
+    st.markdown(f"#### Your :blue[book] recommendations are:")
+    for book in prediction["book_list"]:
+        st.markdown(f'##### {book}')
+
+if st.button('Why ?'):
+
+    with st.spinner("**:red[Chat GPT]** is generating an explanation..."):
+        time.sleep(1)
+
+        ### Chat GPT comment
+        chat_input = f"""Someone enjoyed watching the movies {movie_titles}, write a 3-sentence paragraph explaining why this person might
+        enjoy reading {prediction["book_list"]}"""
+
+        completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "user", "content": chat_input}])
+
+        st.write(completion.choices[0].message["content"])
+
+        st.write("""
+    <p> <a href="https://youtu.be/ws3WGmINlIg?t=14">🍔</a>
+    </p>
+    """,unsafe_allow_html = True)
