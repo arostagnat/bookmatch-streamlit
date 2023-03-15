@@ -54,17 +54,18 @@ with st.form(key='params_for_api'):
             response = requests.get(bookmatch_url, params={"movie_list":movie_ids_list})
             prediction = response.json()
 
-st.write(prediction)
+
 
 if prediction.get("book_list"):
     st.markdown(f"#### Your :blue[book] recommendations are:")
     for book in prediction["book_list"]:
         st.markdown(f'##### {book}')
 
+    st.write(prediction)
+
     if st.button('Why ?'):
 
         with st.spinner("**:red[Chat GPT]** is generating an explanation..."):
-            time.sleep(1)
 
             ### Chat GPT comment
             chat_input = f"""Someone enjoyed watching the movies {movie_titles}, write a 3-sentence paragraph explaining why this person might
