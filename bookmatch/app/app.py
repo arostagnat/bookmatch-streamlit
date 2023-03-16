@@ -29,7 +29,7 @@ columns[1].markdown("""
 You tell us your favorite :red[films] 🎬 We tell you the :blue[books] to read 📚
 """)
 
-@st.cache_data
+# @st.cache_data
 def get_movie_data():
     return metadata_movies["title"]
 
