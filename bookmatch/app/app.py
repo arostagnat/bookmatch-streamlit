@@ -65,8 +65,8 @@ with st.form(key='params_for_api'):
             with st.spinner("**:red[Chat GPT]** is generating an explanation..."):
 
                 ### Chat GPT comment
-                chat_input = f"""Someone enjoyed watching the movies {movie_titles}, write a 3-sentence paragraph explaining why this person might
-                enjoy reading {prediction["book_list"]}"""
+                chat_input = f"""Une personne a apprécié les films suivants: {movie_titles}. Ecris un paragraphe de 3 phrases,
+                expliquant pourquoi cette personne pourrait apprécier lire les livres suivants: {prediction["book_list"]}"""
 
                 completion = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
