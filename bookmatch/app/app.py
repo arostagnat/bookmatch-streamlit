@@ -4,12 +4,15 @@ import pandas as pd
 import requests
 import streamlit as st
 import time
+import pickle
 from pathlib import Path
 
 
 local_raw_data_path = Path(__file__).parents[2].joinpath("data/raw_data")
-file_path = Path(local_raw_data_path).joinpath("raw_movies/metadata.json")
-metadata_movies = pd.read_json(file_path,lines = True)
+file_path = Path(local_raw_data_path).joinpath("raw_movies/metadata.pickle")
+with open(file_path, 'rb') as handle:
+    metadata_movies = pickle.load(handle)
+# metadata_movies = pd.read_json(file_path,lines = True)
 openai.api_key=spell = st.secrets['OPENAI_API_KEY']
 
 
